@@ -186,4 +186,63 @@
 
 
 
+{/* ----------------------------- Handle User Input --------------------------- */}
 
+import { StyleSheet, Text, TextInput, View,Button, Alert } from 'react-native'
+import React, { useState } from 'react'
+
+const App = () => {
+
+    const [text, setText] = useState("");
+    const [submitText, setSubmitText] = useState("");
+
+    const handleSubmit=()=>{
+      setSubmitText(text);
+      setText("");
+    }
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>Welcome to Bhopal</Text>
+      <TextInput 
+      placeholder='Enter a text here...'
+      style={styles.input}
+      value={text}
+      // onChangeText={(text)=>setText(text)}  // Old
+      onChangeText={setText}  // New
+
+      multiline  // allows multiple lines
+      numberOfLines={1}
+      />
+      <Button title="Submit" onPress={handleSubmit} />
+
+      {submitText ? (<Text>Result : {submitText}</Text>) : null};
+
+      <Text numberOfLines={1}>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Distinctio nesciunt ab tempora quasi labore repellendus porro fugiat doloremque. Officiis cum reiciendis harum id, voluptate vero delectus ad ducimus repellat natus! Deserunt, nemo iure blanditiis placeat ullam quae in dicta rem assumenda mollitia, dolorum vero, sint laborum laudantium voluptatibus necessitatibus doloribus!</Text>
+    </View>
+  )
+}
+
+export default App
+
+const styles = StyleSheet.create({
+  container:{
+    flex:1,
+    justifyContent:"center",
+    alignItems:"center",
+    padding:20,
+    gap:10,
+    backgroundColor:"#dadada"
+  },
+  title:{
+    fontSize:20,
+    fontWeight:"500"
+  },
+  input:{
+    width:"100%",
+    padding:5,
+    borderWidth:1,
+    borderRadius:5,
+    paddingVertical:10,
+  }
+})
